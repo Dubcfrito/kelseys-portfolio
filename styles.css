@@ -111,7 +111,7 @@ body {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 .section-header hr {
-  width: 70em;
+  width: 90%;
   border: 2px solid var(--periwinkle);
   border-radius: 7px;
   margin: 0.5em 0 1em;

@@ -15,17 +15,24 @@ html {
 
 html,
 body {
+  height: 100%;
   min-height: 100vh;
   margin: 0;
   padding: 0;
+
   background-image: linear-gradient(var(--background-1), var(--purple), var(--deep-purple));
   background-attachment: fixed;
   background-size: cover;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+}
 /* ================================ */
 /* Navbar Styling */
 /* ================================ */
+
 .sidenav {
   height: 100%;
   width: var(--sidenav-width);
@@ -39,39 +46,49 @@ body {
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
 }
+
 .name {
   color: var(--periwinkle);
   font-family: 'Julius Sans One', sans-serif;
+  justify-content: center;
   text-align: center;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  font-size: 0.8em;
+  font-size: .8em;
 }
+
 .profile {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .profile img {
   width: 9em;
   height: 9em;
   border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 .socials {
   display: flex;
   justify-content: center;
   font-size: 1.8em;
-  transition: transform 0.3s ease;
+  text-decoration: none;
+  transition: transform 0.3s ease
 }
+
 .socials a {
   padding: 1em;
   color: var(--periwinkle);
   filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 }
+
 .socials a:hover {
   color: var(--mauveine);
+  font-weight: 1.1em;
   transform: scale(1.1);
 }
+
 .links a {
   padding: 1em 1em 1em 2em;
   text-decoration: none;
@@ -81,46 +98,52 @@ body {
   display: block;
   transition: all 0.3s ease;
 }
+
 .links a.active {
   background-image: linear-gradient(to right, var(--purple), var(--deep-purple));
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 .links a:hover {
   color: white;
   font-size: 1.6em;
 }
 
 /* ================================ */
-/* Main & Section Headers */
+/* Main Styling */
 /* ================================ */
+
 .main {
   margin-left: var(--sidenav-width);
+  flex: 1;
 }
+
 .section-header {
   text-align: left;
-  padding: 2em 0 0 2em;
+  padding-left: 2em;
+  padding-top: 2em;
   margin-bottom: 1em;
 }
+
 .section-header h1 {
   font-family: 'Julius Sans One', sans-serif;
   font-weight: 600;
   font-size: 2.5em;
   color: var(--periwinkle);
   -webkit-text-stroke: 1px var(--periwinkle);
+  /* This font doesn't have a bold variant :( */
   margin: 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
+
 .section-header hr {
   width: 70em;
   border: 2px solid var(--periwinkle);
-  border-radius: 7px;
-  margin: 0.5em 0 1em;
+  border-radius: 7px 7px 7px 7px;
+  margin: 0.5em 0 1em 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* ================================ */
-/* Footer */
-/* ================================ */
 #site-footer {
   text-align: center;
   padding: 1em 0 1em var(--sidenav-width);
@@ -131,10 +154,13 @@ body {
   display: flex;
   justify-content: center;
 }
+
 #site-footer a {
   color: var(--mauveine);
+  text-align: center;
   text-decoration: none;
 }
+
 #site-footer a:hover {
   text-decoration: underline;
 }
@@ -142,24 +168,32 @@ body {
 /* ================================ */
 /* Video Section */
 /* ================================ */
+
 #animation-grid {
   display: grid;
   grid-template-columns: 1fr;
+  /* default: mobile view */
   gap: 1.5em;
   padding: 2em;
 }
+
 @media (min-width: 500px) {
   #animation-grid {
     grid-template-columns: repeat(2, 1fr);
+    /* 2 columns for tablet */
   }
 }
+
 @media (min-width: 900px) {
   #animation-grid {
     grid-template-columns: repeat(3, 1fr);
+    /* 3 columns for desktop */
     max-width: 1200px;
     margin: 0 auto;
   }
 }
+
+
 #animation-grid video {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -169,57 +203,129 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
+
 #animation-grid video:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* ================================ */
+/* ============================= */
 /* Video Overlay */
-/* ================================ */
+/* ============================= */
+
+/* Base overlay – hidden until .active */
 #video-overlay {
   display: none;
   position: fixed;
-  inset: 0;
+  inset: 0;                        /* shorthand for top/right/bottom/left = 0 */
   background: rgba(0, 0, 0, 0.8);
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
+
+/* Show it as flex when active */
 #video-overlay.active {
   display: flex;
 }
+
 #video-overlay video {
-  max-width: 90vw;
-  max-height: 90vh;
-  object-fit: contain;
+  max-width: 90vw;      
+  max-height: 90vh;     
+  width: auto;         
+  height: auto;       
+  object-fit: contain;  
   border-radius: 0.5em;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.6);
 }
 
 /* ================================ */
-/* Image Grid */
+/* Image Grids */
 /* ================================ */
+
+
 .image-grid {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: wrap;           /* allow wrapping to new rows */
+  justify-content: center;   /* center items in each row */
   gap: 1.5em;
   padding: 2em;
 }
+
 .image-grid img {
-  flex: 0 0 250px;
+  flex: 0 0 250px;           /* always 250px wide, never shrink/grow */
   width: 250px;
   aspect-ratio: 4/5;
   object-fit: cover;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .image-grid img:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* ============================= */
+/* Mobile View */
+/* ============================= */
+
+@media screen and (max-width: 768px) {
+  .sidenav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 1em 0;
+    overflow-y: auto;
+    max-height: 100vh;
+    background-image: linear-gradient(var(--deep-purple), var(--black-bean), var(--deep-purple));
+  }
+
+  .name h1 {
+    text-align: center;
+    font-size: 1.5em;
+    /* smaller font for name */
+    margin-bottom: 0.5em;
+  }
+
+  .profile img {
+    width: 5em;
+    /* smaller profile pic */
+    margin-bottom: 1em;
+  }
+
+  .socials {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    margin-bottom: 1em;
+  }
+
+  .links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3em;
+  }
+
+  .links a {
+    width: 80%;
+    text-align: center;
+    padding: 0.5em;
+    font-size: 1.1em;
+  }
+
+  .main {
+    margin-left: 0;
+    padding: 1em;
+  }
 }
 
 /* ================================ */
@@ -362,75 +468,4 @@ body {
 .contact-form button:hover {
   background-color: var(--slate-blue);
   transform: scale(1.05);
-}
-
-/* ================================ */
-/* Mobile View & Sticky Footer     */
-/* ================================ */
-@media screen and (max-width: 768px) {
-  /* make the page a column flex so footer hugs bottom */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  body {
-    display: flex;
-    flex-direction: column;
-  }
-  .main {
-    flex: 1;
-    margin-left: 0;
-    padding: 1em;
-  }
-
-  /* collapse sidebar into a top nav */
-  .sidenav {
-    position: relative;
-    width: 100%;
-    height: auto;
-    padding: 1em 0;
-    overflow-y: auto;
-    max-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .name h1 {
-    font-size: 1.5em;
-    margin-bottom: 0.5em;
-    text-align: center;
-  }
-  .profile img {
-    width: 5em;
-    height: 5em;
-    margin-bottom: 1em;
-  }
-  .socials {
-    display: flex;
-    gap: 1em;
-    justify-content: center;
-    margin-bottom: 1em;
-  }
-  .links {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5em;
-  }
-  .links a {
-    width: 80%;
-    text-align: center;
-    padding: 0.5em;
-    font-size: 1.1em;
-  }
-
-  /* override desktop footer padding */
-  #site-footer {
-    margin-left: 0;
-    padding: 1em 0;
-    width: 100%;
-  }
 }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/b648ad1838.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="scripts.js" defer></script>
+</head>
+
+<body>
+  <!--<!-- ======= NavBar ======= -->-->
+  <div id="navbar"></div>
+  <!-- ======= Main Body ======= -->
+  <div class="main">
+    <section id="demo-reel">
+      <div class="section-header">
+        <h1>Demo Reel</h1>
+        <hr>
+      </div>
+      <div id="demo-reel-video"></div>
+    </section>
+    <section id="two-d-animations">
+      <div class="section-header" data-aos="fade-up">
+        <h1>2D Animations</h1>
+        <hr>
+      </div>
+      <div id="animation-grid" data-aos="fade-up"></div>
+    </section>
+    <section id="concept-art">
+      <div class="section-header" data-aos="fade-up">
+        <h1>Concept Art</h1>
+        <hr>
+      </div>
+      <div class="image-grid" id="concept-art-grid" data-aos="fade-up"></div>
+    </section>
+    <section id="digital-artwork">
+      <div class="section-header" data-aos="fade-up">
+        <h1>Digital Artwork</h1>
+        <hr>
+        <div class="image-grid" id="digital-art-grid" data-aos="fade-up"></div>
+      </div>
+    </section>
+    <section id="fundamentals">
+      <div class="section-header" data-aos="fade-up">
+        <h1>Fundamentals</h1>
+        <hr>
+        <div class="image-grid" id="fundamentals-grid" data-aos="fade-up"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Lightbox Overlay -->
+  <div id="lightbox-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000;">
+    <img id="lightbox-image" src=""
+      style="max-width:90%; max-height:90%; box-shadow: 0 0 20px white; border-radius: 10px;">
+  </div>
+
+  <!-- to have the video popups-->
+  <div id="video-overlay" class="hidden">
+    <video id="overlay-video" controls autoplay muted loop></video>
+  </div>
+
+  <!-- ======= External Library Script Loading ======= -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <footer id="site-footer">
+    <p>© 2025 <a href="https://your-portfolio.com" target="_blank" rel="noopener">Kelsey Cooper</a>. Site designed &
+      built by Wyatt Lotz.</p>
+  </footer>
+</body>
+
+</html>

@@ -302,6 +302,7 @@ body {
   width: 50%;
   border: 1.5px solid var(--periwinkle);
   margin: 0 auto 2em auto;
+  border-radius: 1em;
 }
 
 .contact-form {
@@ -347,6 +348,7 @@ body {
 }
 
 .contact-form button {
+  font-family: 'Julius Sans One', sans-serif;
   padding: 0.8em;
   background-color: var(--mauveine);
   color: var(--periwinkle);

@@ -21,6 +21,7 @@ body {
   background-image: linear-gradient(var(--background-1), var(--purple), var(--deep-purple));
   background-attachment: fixed;
   background-size: cover;
+  background-color: var(--deep-purple); /* fallback in case gradient fails */
 }
 
 /* ================================ */
@@ -201,22 +202,25 @@ body {
 /* Image Grid */
 /* ================================ */
 .image-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5em;
   padding: 2em;
+  max-width: 1400px;
+  margin: 0 auto;
 }
+
 .image-grid img {
-  flex: 0 0 250px;
-  width: 250px;
-  aspect-ratio: 4/5;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
+
 .image-grid img:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);

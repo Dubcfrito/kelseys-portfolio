@@ -1,6 +1,3 @@
-// scripts.js
-
-// 1️⃣ Load navbar, then wire up active-link behavior
 function loadNavbar() {
   const placeholder = document.getElementById('navbar');
   if (!placeholder) return;
@@ -16,7 +13,6 @@ function loadNavbar() {
     .catch(err => console.error('Navbar load error:', err));
 }
 
-// 2️⃣ Immediately highlight based on URL (page + hash)
 function highlightLinkByURL() {
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   const currentHash = window.location.hash;               // e.g. "#concept-art"
@@ -27,7 +23,7 @@ function highlightLinkByURL() {
   });
 }
 
-// 4️⃣ Observe sections and toggle the matching link when in view
+// to highlight the section you are on
 function setupSectionObserver() {
   const sections = document.querySelectorAll('section[id]');
   const links    = Array.from(document.querySelectorAll('.sidenav a[href*="#"]'));
@@ -36,8 +32,8 @@ function setupSectionObserver() {
   // Fire as soon as the section's middle crosses the viewport mid-line
   const observerOptions = {
     root: null,
-    rootMargin: '-50% 0px -50% 0px', // shift root box up by 50% of viewport height
-    threshold: 0                       // fire on any intersection
+    rootMargin: '-50% 0px -50% 0px', 
+    threshold: 0                       
   };
 
   const obs = new IntersectionObserver((entries) => {
@@ -55,7 +51,7 @@ function setupSectionObserver() {
   sections.forEach(sec => obs.observe(sec));
 }
 
-// 4️⃣ Lazy-load and initialize the animations grid
+// lazy load animations
 async function loadAnimations() {
   const grid = document.getElementById('animation-grid');
   if (!grid) return;
@@ -111,7 +107,7 @@ async function loadAnimations() {
   }
 }
 
-// 5️⃣ Close the video overlay when clicking outside the video
+// close out of video overaly
 function setupOverlayClose() {
   const overlay = document.getElementById('video-overlay');
   const overlayVideo = document.getElementById('overlay-video');
@@ -126,7 +122,6 @@ function setupOverlayClose() {
   });
 }
 
-// 6️⃣ Load a grid of images from a folder’s images.json
 async function loadImages(sectionId, folderPath) {
   const grid = document.getElementById(sectionId);
   if (!grid) return;
@@ -157,7 +152,6 @@ async function loadImages(sectionId, folderPath) {
   }
 }
 
-// 7️⃣ Insert your demo-reel video with AOS animation
 function loadDemoReel() {
   const container = document.getElementById('demo-reel-video');
   if (!container) return;
@@ -181,7 +175,7 @@ function loadDemoReel() {
   container.appendChild(wrap);
 }
 
-// 9️⃣ Close the lightbox overlay when clicking *outside* the image
+// close out of images
 function setupLightboxClose() {
   const lbOverlay = document.getElementById('lightbox-overlay');
   if (!lbOverlay) return;
@@ -194,7 +188,6 @@ function setupLightboxClose() {
   });
 }
 
-// 8️⃣ Initialize everything once the DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   loadNavbar();
   loadDemoReel();

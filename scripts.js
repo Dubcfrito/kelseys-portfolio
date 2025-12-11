@@ -8,6 +8,8 @@ function loadNavbar() {
       placeholder.innerHTML = html;
       highlightLinkByURL();
       setupSectionObserver();
+      // Setup mobile scroll behavior after navbar is loaded
+      setupMobileNavScroll();
     })
     .catch(err => console.error('Navbar load error:', err));
 }
@@ -274,6 +276,59 @@ function setupLightboxClose() {
   lbOverlay.addEventListener('click', e => {
     if (e.target === lbOverlay) {
       lbOverlay.style.display = 'none';
+    }
+  });
+}
+
+// Hide navbar on scroll down, show on scroll up (mobile only)
+function setupMobileNavScroll() {
+  // Only run on mobile
+  if (window.innerWidth > 768) return;
+  
+  const navbar = document.querySelector('.sidenav');
+  if (!navbar) {
+    console.log('Navbar not found');
+    return;
+  }
+  
+  console.log('Mobile nav scroll setup running');
+  
+  let lastScrollTop = 0;
+  let ticking = false;
+  
+  const handleScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Scrolling down - hide navbar
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+          navbar.classList.add('hidden');
+        } 
+        // Scrolling up - show navbar
+        else if (scrollTop < lastScrollTop) {
+          navbar.classList.remove('hidden');
+        }
+        
+        // At the top - always show
+        if (scrollTop === 0) {
+          navbar.classList.remove('hidden');
+        }
+        
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        ticking = false;
+      });
+      
+      ticking = true;
+    }
+  };
+  
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  
+  // Re-check on resize
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      navbar.classList.remove('hidden');
     }
   });
 }

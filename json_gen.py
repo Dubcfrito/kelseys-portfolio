@@ -18,9 +18,14 @@ folders = [
         'extensions': ['.jpg', '.jpeg', '.png', '.gif', '.webp']
     },
     {
-        'path': 'portfolio-materials/Videos',
+        'path': 'portfolio-materials/Storyboarding',
         'output_file': 'videos.json',
         'extensions': ['.mp4', '.webm', '.mov']
+    },
+    {
+        'path': 'portfolio-materials/Artwork',
+        'output_file': 'images.json',
+        'extensions': ['.jpg', '.jpeg', '.png', '.gif', '.webp']
     },
     {
         'path': 'portfolio-materials/Concept_Art',
@@ -53,12 +58,28 @@ def generate_json(folder_config):
         # Read all files in the directory
         files = os.listdir(folder_path)
         
-        # Filter files by extensions and exclude JSON files
-        filtered_files = [
-            f for f in files 
-            if os.path.splitext(f)[1].lower() in extensions 
-            and f != output_file
-        ]
+        # If this is an images.json, we need to check for video thumbnails
+        if output_file == 'images.json':
+            # Get list of video files in the folder
+            video_files = [
+                os.path.splitext(f)[0] for f in files 
+                if os.path.splitext(f)[1].lower() in ['.mp4', '.webm', '.mov']
+            ]
+            
+            # Filter files by extensions and exclude JSON files and video thumbnails
+            filtered_files = [
+                f for f in files 
+                if os.path.splitext(f)[1].lower() in extensions 
+                and f != output_file
+                and os.path.splitext(f)[0] not in video_files  # Exclude video thumbnails
+            ]
+        else:
+            # For video JSONs, just filter normally
+            filtered_files = [
+                f for f in files 
+                if os.path.splitext(f)[1].lower() in extensions 
+                and f != output_file
+            ]
         
         # Sort files alphabetically
         filtered_files.sort()

@@ -327,6 +327,39 @@ body {
   margin-top: 2rem;
 }
 
+/* Add to the About Page section */
+.about-image-top {
+  margin: 2rem auto 2.5rem;
+  max-width: 500px;
+}
+
+.about-image-top img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 3px solid var(--muted-olive);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-image-top img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 40px rgba(140, 174, 104, 0.4);
+}
+
+/* Mobile optimization for about image */
+@media screen and (max-width: 768px) {
+  .about-image-top {
+    max-width: 100%;
+    margin: 1.5rem auto 2rem;
+  }
+  
+  .about-image-top img {
+    max-width: 100%;
+  }
+}
+
 /* ================================ */
 /* Contact Page */
 /* ================================ */

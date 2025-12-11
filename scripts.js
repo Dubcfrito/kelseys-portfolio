@@ -128,31 +128,27 @@ async function loadAnimations() {
   }
 }
 
-// Load Videos Section (similar to animations but for the Videos section)
-async function loadVideos() {
-  const grid = document.getElementById('videos-grid');
+// Load Storyboarding Videos
+async function loadStoryboardingVideos() {
+  const grid = document.getElementById('storyboarding-videos-grid');
   if (!grid) return;
 
-  // Create a grid container if it doesn't exist
-  if (!grid.classList.contains('video-grid')) {
-    grid.classList.add('video-grid');
-    grid.style.display = 'grid';
-    grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
-    grid.style.gap = '2rem';
-    grid.style.padding = '0';
-    grid.style.maxWidth = '1400px';
-    grid.style.margin = '0 auto';
-  }
+  // Style the grid
+  grid.style.display = 'grid';
+  grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
+  grid.style.gap = '2rem';
+  grid.style.padding = '0';
+  grid.style.maxWidth = '1400px';
+  grid.style.margin = '0 auto';
 
   try {
-    // You can create a videos.json file similar to animations.json
-    const res = await fetch('portfolio-materials/Videos/videos.json');
+    const res = await fetch('portfolio-materials/Storyboarding/videos.json');
     const list = await res.json();
 
     list.forEach(filename => {
       const video = document.createElement('video');
-      video.dataset.src = `portfolio-materials/Videos/${filename}`;
-      video.poster = `portfolio-materials/Videos/${filename.replace('.mp4', '.jpg')}`;
+      video.dataset.src = `portfolio-materials/Storyboarding/${filename}`;
+      video.poster = `portfolio-materials/Storyboarding/${filename.replace('.mp4', '.jpg')}`;
       video.muted = true;
       video.loop = true;
       video.controls = false;
@@ -189,9 +185,39 @@ async function loadVideos() {
       });
     }, { threshold: 0.25 });
 
-    document.querySelectorAll('#videos-grid video').forEach(v => observer.observe(v));
+    document.querySelectorAll('#storyboarding-videos-grid video').forEach(v => observer.observe(v));
   } catch (error) {
-    console.error('Error loading videos:', error);
+    console.error('Error loading storyboarding videos:', error);
+  }
+}
+
+// Load Artwork Section (images only)
+async function loadArtwork() {
+  const grid = document.getElementById('artwork-grid');
+  if (!grid) return;
+
+  try {
+    const res = await fetch('portfolio-materials/Artwork/images.json');
+    const files = await res.json();
+
+    files.forEach(name => {
+      const img = document.createElement('img');
+      img.src = `portfolio-materials/Artwork/${name}`;
+      img.alt = name;
+      img.style.width = '100%';
+      img.style.height = 'auto';
+
+      img.addEventListener('click', () => {
+        const lb = document.getElementById('lightbox-overlay');
+        const li = document.getElementById('lightbox-image');
+        lb.style.display = 'flex';
+        li.src = img.src;
+      });
+
+      grid.appendChild(img);
+    });
+  } catch (error) {
+    console.error('Error loading Artwork images:', error);
   }
 }
 
@@ -257,8 +283,9 @@ document.addEventListener('DOMContentLoaded', () => {
   loadNavbar();
   loadDemoReel();
   loadAnimations();
-  loadVideos();
-  loadImages('storyboarding-grid', 'portfolio-materials/Storyboarding');
+  loadStoryboardingVideos();
+  loadArtwork();
+  loadImages('storyboarding-images-grid', 'portfolio-materials/Storyboarding');
   setupOverlayClose();
   setupLightboxClose();
 });

@@ -333,6 +333,30 @@ function setupMobileNavScroll() {
   });
 }
 
+// Add keyboard support for closing overlays
+function setupKeyboardControls() {
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+      // Close video overlay
+      const videoOverlay = document.getElementById('video-overlay');
+      const overlayVideo = document.getElementById('overlay-video');
+      if (videoOverlay && videoOverlay.classList.contains('active')) {
+        videoOverlay.classList.remove('active');
+        if (overlayVideo) {
+          overlayVideo.pause();
+          overlayVideo.currentTime = 0;
+        }
+      }
+      
+      // Close image lightbox
+      const lightboxOverlay = document.getElementById('lightbox-overlay');
+      if (lightboxOverlay && lightboxOverlay.style.display === 'flex') {
+        lightboxOverlay.style.display = 'none';
+      }
+    }
+  });
+}
+
 // Initialize everything on page load
 document.addEventListener('DOMContentLoaded', () => {
   loadNavbar();
@@ -343,4 +367,5 @@ document.addEventListener('DOMContentLoaded', () => {
   loadImages('storyboarding-images-grid', 'portfolio-materials/Storyboarding');
   setupOverlayClose();
   setupLightboxClose();
+  setupKeyboardControls();
 });

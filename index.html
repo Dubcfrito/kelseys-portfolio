@@ -23,7 +23,7 @@
 
   <!-- ======= Main Body ======= -->
   <div class="main">
-    
+
     <!-- Demo Reel Section -->
     <section id="demo-reel">
       <div class="section-header">
@@ -61,6 +61,27 @@
         <hr>
       </div>
       <div class="image-grid" id="artwork-grid" data-aos="fade-up"></div>
+    </section>
+
+    <!-- NDA Section -->
+    <section id="nda-work">
+      <div class="section-header" data-aos="fade-up">
+        <h1>Protected Work (NDA)</h1>
+        <hr>
+      </div>
+
+      <div id="nda-auth-container" class="nda-lock-box" data-aos="fade-up">
+        <i class="fa-solid fa-lock"></i>
+        <p>This content is under NDA. Please enter the password to view.</p>
+        <div class="nda-input-group">
+          <input type="password" id="nda-password" placeholder="Enter Password">
+          <button onclick="checkNDAPassword()">Unlock</button>
+        </div>
+        <p id="nda-error" style="color: #ff6b6b; display: none; margin-top: 1rem;">Incorrect password. Please try again.
+        </p>
+      </div>
+
+      <div class="image-grid" id="nda-grid" style="display: none;"></div>
     </section>
 
   </div>

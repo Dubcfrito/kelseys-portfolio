@@ -41,6 +41,11 @@ folders = [
         'path': 'portfolio-materials/Fine_Art/Fundamentals',
         'output_file': 'images.json',
         'extensions': ['.jpg', '.jpeg', '.png', '.gif', '.webp']
+    },
+    {
+    'path': 'portfolio-materials/NDA',
+    'output_file': 'images.json',
+    'extensions': ['.jpg', '.jpeg', '.png', '.gif', '.webp']
     }
 ]
 

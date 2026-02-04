@@ -712,6 +712,53 @@ body {
   }
 }
 
+.nda-lock-box {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 3rem;
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid rgba(140, 174, 104, 0.3);
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.nda-lock-box i {
+  font-size: 3rem;
+  color: var(--muted-olive);
+  margin-bottom: 1.5rem;
+}
+
+.nda-input-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+.nda-input-group input {
+  flex: 1;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.3);
+  color: white;
+}
+
+.nda-input-group button {
+  padding: 0.8rem 1.5rem;
+  background: var(--muted-olive);
+  border: none;
+  border-radius: 8px;
+  color: var(--midnight-violet);
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.nda-input-group button:hover {
+  opacity: 0.9;
+}
+
 /* Focus states for keyboard navigation */
 a:focus,
 button:focus,
@@ -720,6 +767,8 @@ textarea:focus {
   outline: 2px solid var(--muted-olive);
   outline-offset: 2px;
 }
+
+
 
 /* Smooth scrolling with offset for fixed header on mobile */
 @media screen and (max-width: 768px) {
